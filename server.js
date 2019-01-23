@@ -1,6 +1,7 @@
 const express = require('express');
 const hbs = require('hbs');
-const fs = require('fs');
+//I am pretty sure heroku does NOT allow file logging
+// const fs = require('fs');
 
 //heroku deployment
 const port = process.env.PORT || 3000;
@@ -13,11 +14,11 @@ app.set('view engine', 'hbs');
 app.use((req, res, next) => {
   var now = new Date().toString();
   var log = `${now}: ${req.method}  ${req.url}`;
-  fs.appendFile('server.log', log + '\n', err => {
-    if (err) {
-      console.log('Unable to uppemd to server.log' + err.message);
-    }
-  });
+  // fs.appendFile('server.log', log + '\n', err => {
+  //   if (err) {
+  //     console.log('Unable to uppemd to server.log' + err.message);
+  //   }
+  // });
   console.log(log);
   next();
 });
